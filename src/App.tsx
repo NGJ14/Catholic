@@ -13,7 +13,6 @@ const BottomNav = () => {
 
   const navItems = [
     { path: '/', icon: <Book size={24} />, label: 'Read' },
-    { path: '/explore', icon: <Compass size={24} />, label: 'Explore' },
     { path: '/settings', icon: <SettingsIcon size={24} />, label: 'Settings' }
   ];
 
@@ -73,8 +72,6 @@ function App() {
           <Route path="/book/:bookId" element={<ChaptersPage />} />
           <Route path="/read/:bookId/:chapter" element={<ReaderPage />} />
           <Route path="/settings" element={<SettingsPage />} />
-          {/* Explore is a placeholder for future features */}
-          <Route path="/explore" element={<div style={{padding: '2rem', textAlign:'center'}}><h2>Explore</h2><p style={{color:'var(--text-muted)'}}>Daily verses and plans coming soon.</p></div>} />
         </Routes>
       </div>
       <BottomNav />

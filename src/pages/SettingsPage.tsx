@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Moon, Sun, BookOpen, Database } from 'lucide-react';
+import { Moon, Sun, BookOpen, Type } from 'lucide-react';
 
 export default function SettingsPage() {
   const [theme, setTheme] = useState(localStorage.getItem('bible-theme') || 'dark');
+  const [fontSize, setFontSize] = useState(() => parseInt(localStorage.getItem('bible-font-size') || '18'));
 
   const updateTheme = (newTheme: string) => {
     setTheme(newTheme);
@@ -67,15 +68,29 @@ export default function SettingsPage() {
       </section>
 
       <section style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>Data Source</h2>
+        <h2 style={{ fontSize: '1.2rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>Typography</h2>
         <div className="glass-panel" style={{ borderRadius: '16px', padding: '1.2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
-            <Database size={24} color="var(--accent-gold)" />
-            <h3 style={{ margin: 0, fontSize: '1.1rem' }}>NRSV Bible Text</h3>
+            <Type size={24} color="var(--accent-gold)" />
+            <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Reader Font Size: {fontSize}px</h3>
           </div>
-          <p style={{ color: 'var(--text-secondary)', lineHeight: 1.5, marginBottom: '1rem', fontSize: '0.95rem' }}>
-            The New Revised Standard Version (NRSV) Catholic Edition text has been successfully imported from your PDF and is fully integrated into the app. You can now read the entire Bible completely offline!
-          </p>
+          <input 
+            type="range" 
+            min="14" 
+            max="32" 
+            step="2" 
+            value={fontSize} 
+            onChange={(e) => {
+              const newSize = e.target.value;
+              setFontSize(parseInt(newSize));
+              localStorage.setItem('bible-font-size', newSize);
+            }} 
+            style={{ width: '100%', accentColor: 'var(--accent-gold)', cursor: 'pointer' }} 
+          />
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.5rem', color: 'var(--text-muted)', fontSize: '0.8rem', fontWeight: 'bold' }}>
+            <span>A</span>
+            <span style={{ fontSize: '1.2rem' }}>A</span>
+          </div>
         </div>
       </section>
     </div>
