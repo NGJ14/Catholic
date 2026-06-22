@@ -18,7 +18,7 @@ export default function ChaptersPage() {
     <div style={{ padding: '1rem 1rem 5rem 1rem' }}>
       <header style={{ display: 'flex', alignItems: 'center', marginBottom: '2rem', marginTop: '1rem', gap: '1rem' }}>
         <button 
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/')}
           className="animated-btn"
           style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', padding: '8px' }}
         >
