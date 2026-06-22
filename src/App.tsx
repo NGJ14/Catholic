@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { Book, Compass, Settings as SettingsIcon } from 'lucide-react';
+import { Book, Settings as SettingsIcon } from 'lucide-react';
 import BooksPage from './pages/BooksPage';
 import ChaptersPage from './pages/ChaptersPage';
 import ReaderPage from './pages/ReaderPage';
