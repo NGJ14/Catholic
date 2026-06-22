@@ -58,10 +58,15 @@ const BottomNav = () => {
 
 // Main App component
 function App() {
-  // Initialize theme
+  // Initialize theme and global font size
   useEffect(() => {
     const savedTheme = localStorage.getItem('bible-theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
+    
+    const savedFontSize = localStorage.getItem('bible-font-size');
+    if (savedFontSize) {
+      document.documentElement.style.fontSize = `${savedFontSize}px`;
+    }
   }, []);
 
   return (

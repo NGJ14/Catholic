@@ -8,7 +8,6 @@ export default function ReaderPage() {
   const navigate = useNavigate();
   const [verses, setVerses] = useState<Verse[]>([]);
   const [loading, setLoading] = useState(true);
-  const [fontSize, setFontSize] = useState(() => parseInt(localStorage.getItem('bible-font-size') || '18'));
 
   const book = books.find(b => b.id === bookId);
   const chapterNum = parseInt(chapter || '1');
@@ -30,10 +29,6 @@ export default function ReaderPage() {
     const nextChapter = chapterNum + dir;
     if (nextChapter > 0 && nextChapter <= book.chapters) {
       navigate(`/read/${book.id}/${nextChapter}`);
-    } else if (dir === 1) {
-      // Logic to go to next book could be added here
-    } else if (dir === -1) {
-      // Logic to go to previous book
     }
   };
 
@@ -58,24 +53,6 @@ export default function ReaderPage() {
           </button>
           <h1 style={{ fontSize: '1.25rem', margin: 0, fontWeight: 600 }}>{book.name} {chapterNum}</h1>
         </div>
-        <div style={{ display: 'flex', gap: '10px' }}>
-          <button 
-            onClick={() => {
-              const newSize = Math.max(14, fontSize - 2);
-              setFontSize(newSize);
-              localStorage.setItem('bible-font-size', newSize.toString());
-            }}
-            style={{ background: 'none', border: '1px solid var(--border-color)', color: 'var(--text-primary)', borderRadius: '6px', padding: '4px 10px', cursor: 'pointer' }}
-          >A-</button>
-          <button 
-            onClick={() => {
-              const newSize = Math.min(32, fontSize + 2);
-              setFontSize(newSize);
-              localStorage.setItem('bible-font-size', newSize.toString());
-            }}
-            style={{ background: 'none', border: '1px solid var(--border-color)', color: 'var(--text-primary)', borderRadius: '6px', padding: '4px 10px', cursor: 'pointer' }}
-          >A+</button>
-        </div>
       </header>
 
       <main style={{ padding: '1.5rem', flex: 1, maxWidth: '800px', margin: '0 auto', width: '100%' }}>
@@ -85,7 +62,7 @@ export default function ReaderPage() {
             <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
           </div>
         ) : (
-          <div className="reader-text" style={{ fontSize: `${fontSize}px` }}>
+          <div className="reader-text">
             {verses.map((v) => (
               <div key={v.verse} style={{ marginBottom: '0.75em', lineHeight: '1.6' }}>
                 <span className="verse-num">{v.verse}</span>

@@ -72,18 +72,19 @@ export default function SettingsPage() {
         <div className="glass-panel" style={{ borderRadius: '16px', padding: '1.2rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '1rem' }}>
             <Type size={24} color="var(--accent-gold)" />
-            <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Reader Font Size: {fontSize}px</h3>
+            <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Text Size</h3>
           </div>
           <input 
             type="range" 
-            min="14" 
-            max="32" 
-            step="2" 
+            min="12" 
+            max="24" 
+            step="1" 
             value={fontSize} 
             onChange={(e) => {
               const newSize = e.target.value;
               setFontSize(parseInt(newSize));
               localStorage.setItem('bible-font-size', newSize);
+              document.documentElement.style.fontSize = `${newSize}px`;
             }} 
             style={{ width: '100%', accentColor: 'var(--accent-gold)', cursor: 'pointer' }} 
           />
